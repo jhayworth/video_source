@@ -20,13 +20,13 @@ case $1 in
         generate_ansible_inventory
 	read -p "Templates should be copied over. Continue?"
 	
-        terraform apply | tee terraform_run.log
+        terraform apply | tee terraform.log
         echo "Sleeping for 20 seconds while the servers warm up"
         sleep 20s
         read -p "Terraform should be done. Continue?"
     
         cd playbooks
-        ansible-playbook -vv -i inventory k8s-ping.yaml
+        ansible-playbook -vv -i inventory ping.yaml
         read -p "Ping test done. Continue?"
         ;;
 

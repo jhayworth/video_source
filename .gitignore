@@ -40,3 +40,9 @@ override.tf.json
 terraform.rc
 
 ## End Terraform block
+
+## Ansible block
+
+inventory
+
+## End Ansible block
