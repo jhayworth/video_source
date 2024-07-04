@@ -31,4 +31,6 @@ resource "aws_instance" "test_server" {
   tags = {
     Name = "Test_Server_Instance"
   }
+
+  provisioner "local-exec" { command = "scripts/prepare-ansible-inventory.sh test_server ${aws_instance.test_server.public_ip}" }
 }
