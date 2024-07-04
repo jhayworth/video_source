@@ -1,11 +1,11 @@
 #!/bin/bash
 
 generate_ansible_inventory () {
-    if [ -f "playbook/inventory" ]; then
-        rm -f playbook/inventory
+    if [ -f "playbooks/inventory" ]; then
+        rm -f playbooks/inventory
     fi
 
-    cp templates/ansible_inventory.template playbook/inventory
+    cp templates/ansible_inventory.template playbooks/inventory
 }
 
 # Now we can run terraform
@@ -25,7 +25,7 @@ case $1 in
         sleep 20s
         read -p "Terraform should be done. Continue?"
     
-        cd playbook
+        cd playbooks
         ansible-playbook -vv -i inventory k8s-ping.yaml
         read -p "Ping test done. Continue?"
         ;;
@@ -35,7 +35,7 @@ case $1 in
         ;;
 
     "clean")
-        rm -f playbook/inventory
+        rm -f playbooks/inventory
         rm -f *.log
         ;;
     
